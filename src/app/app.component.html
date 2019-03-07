@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col top-buffer bottom-buffer" style="height: 10vh">
+      <app-template rleFile="gameoflife.rle" theme="Preview" [templateWrapper]="false" [preview]="false" loadingText="Game Of Life"></app-template>
+    </div>
+  </div>
+  <app-main-menu></app-main-menu>
+  <router-outlet></router-outlet>
+</div>

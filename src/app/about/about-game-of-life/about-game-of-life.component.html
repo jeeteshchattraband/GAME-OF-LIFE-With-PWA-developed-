@@ -1,0 +1,166 @@
+<div class="row top-buffer">
+  <div class="col">
+    <h4>Introduction</h4>
+    <p>
+      Welcome to the game of life! If you have no idea what the game of life is check out
+      <a href="https://www.youtube.com/watch?v=CgOcEZinQ2I" target="_blank">this video</a>
+      or the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Wikipedia page</a>.
+      Conway's game of life is the most known rule set, there are a number of variations such as
+      <a href="http://www.conwaylife.com/wiki/Highlife" target="_blank">highlife</a> which is
+      known for it's frequently occurring replicators. If you want to read more about the game of life, you can
+      check out <a href="http://www.conwaylife.com/wiki/Main_Page" target="_blank">LifeWiki</a> which has a huge
+      database of information. This page will go over the rules that exist in the game, and some interesting patterns.
+    </p>
+  </div>
+</div>
+<div class="row top-buffer">
+  <div class="col">
+    <h4 class="bottom-buffer">Rules</h4>
+    <h5>Rule String</h5>
+    <p>
+      The rule string describes when a cell survives or is born into the next generation. In the rule string <b>S</b>
+      stands for <b>survival</b> and <b>B</b> stands for <b>birth</b>. The digits that follow S/B indicate the
+      neighbor count required for a cell to either survive or birth. For instance in Conway's Game of Life, the rule
+      string is B3/S23 which means for a cell to become alive (or birth), it will need three neighbor cells to be alive,
+      and for a cell to continue to stay alive (or survive) it will need two or three neighbor cells to be alive. If
+      none of these conditions are met, the cell will die/remain dead.
+    </p>
+    <h5>Common Rules</h5>
+    <table class="table table-bordered table-hover table-responsive">
+      <thead>
+      <tr>
+        <th>Rule</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>B1357/S1357</td>
+        <td>Replicator</td>
+        <td>A rule in which every pattern is a replicator.</td>
+      </tr>
+      <tr>
+        <td>B1357/S02468</td>
+        <td>Fredkin</td>
+        <td>A rule in which, like Replicator, every pattern is a replicator.</td>
+      </tr>
+      <tr>
+        <td>B2/S</td>
+        <td>Seeds</td>
+        <td>An exploding rule in which every cell dies in every generation. It has many simple orthogonal spaceships, though it is in general difficult to create patterns that don't explode.</td>
+      </tr>
+      <tr>
+        <td>B2/S0</td>
+        <td>Live Free or Die</td>
+        <td>An exploding rule in which only cells with no neighbors survive. It has many spaceships, puffers, and oscillators, some of infinitely extensible size and period.</td>
+      </tr>
+      <tr>
+        <td>B3/S012345678</td>
+        <td>Life without death</td>
+        <td>An expanding rule that produces complex flakes. It also has important ladder patterns.</td>
+      </tr>
+      <tr>
+        <td>B3/S12</td>
+        <td>Flock</td>
+        <td>A rule which decays into small still lifes and oscillators.</td>
+      </tr>
+      <tr>
+        <td>B3/S1234</td>
+        <td>Mazectric</td>
+        <td>An expanding rule that crystallizes to form maze-like designs that tend to be straighter (ie. have longer "halls") than the standard maze rule.</td>
+      </tr>
+      <tr>
+        <td>B3/S12345</td>
+        <td>Maze</td>
+        <td>An expanding rule that crystalizes to form maze-like designs.</td>
+      </tr>
+      <tr>
+        <td>B3/S23</td>
+        <td>Conway's Life</td>
+        <td>A chaotic rule that is by far the most well-known and well-studied. It exhibits highly complex behavior.</td>
+      </tr>
+      <tr>
+        <td>B36/S125</td>
+        <td>2x2</td>
+        <td>A chaotic rule with many simple still lifes, oscillators and spaceships. Its name comes from the fact that it sends patterns made up of 2x2 blocks to patterns made up of 2x2 blocks.</td>
+      </tr>
+      <tr>
+        <td>B36/S23</td>
+        <td>HighLife</td>
+        <td>A chaotic rule very similar to Conway's Life that is of interest because it has a simple replicator.</td>
+      </tr>
+      <tr>
+        <td>B368/S245</td>
+        <td>Move</td>
+        <td>A rule in which random patterns tend to stabilize extremely quickly. Has a very common slow-moving spaceship and slow-moving puffer.</td>
+      </tr>
+      <tr>
+        <td>B3678/34678</td>
+        <td>Day & Night</td>
+        <td>A stable rule that is symmetric under on-off reversal. Many patterns exhibiting highly complex behavior have been found for it.</td>
+      </tr>
+      </tbody>
+    </table>
+    <p>For more information see <a href="http://www.conwaylife.com/wiki/Rules#Rules" target="_blank">LifeWiki rules</a>.</p>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col">
+    <h4>Patterns</h4>
+    <p>
+      If you are interested in the patterns in the game of life, you can check out
+      <a href="http://www.conwaylife.com/wiki/Category:Patterns" target="_blank">LifeWiki patterns</a>. For this site,
+      I'm going to list off a few of the popular patterns, and some additional interesting ones I've found along the
+      way.
+    </p>
+  </div>
+</div>
+<div class="row top-buffer bottom-buffer">
+  <div class="col-12">
+    <h5>Popular</h5>
+  </div>
+  <div class="col-12" top-buffer>
+    <app-template rleFile="gosperglidergun.rle" theme="Matrix"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="puffer1.rle" theme="Fire & Smoke"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="rabbits.rle" theme="Snow Storm"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="pulsar.rle" theme="Default"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="queenbeeshuttle.rle" theme="Matrix"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="linepuffer.rle" theme="Default"></app-template>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-12">
+    <h5>Interesting</h5>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="enterprise.rle" theme="Stars"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="shipmaker.rle" theme="Fire & Smoke"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="mirage.rle" theme="Psychedelic"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="clock2.rle" theme="Default"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="4c9ladders.rle" theme="Fire & Smoke"></app-template>
+  </div>
+  <div class="col-12 top-buffer">
+    <app-template rleFile="champageglass.rle" theme="Water"></app-template>
+  </div>
+</div>

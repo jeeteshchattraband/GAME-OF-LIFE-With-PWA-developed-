@@ -1,0 +1,25 @@
+div.fixed-content {
+  overflow-y: auto;
+}
+div.template-card {
+  height: 18em;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.control {
+  color: rgb(255, 255, 255);
+  padding: .4rem;
+}
+
+.control:hover {
+  color: #337ab7;
+  cursor: pointer;
+}

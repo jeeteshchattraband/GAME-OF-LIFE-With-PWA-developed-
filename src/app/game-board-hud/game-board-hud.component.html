@@ -1,0 +1,140 @@
+<div id="pan-controls" style="position: absolute; top: 10px; left: 10px;">
+  <div id="up-control">
+    <i class="fa fa-chevron-up control"
+       [title]="actionTitle[GCA.UP]"
+       (click)="action(GCA.UP)"
+       (mousedown)="holdAction(GCA.UP, true)"
+       (mouseup)="holdAction(GCA.UP, false)"
+       (mouseleave)="holdAction(GCA.UP, false)">
+    </i>
+  </div>
+  <div id="down-control">
+    <i class="fa fa-chevron-down control"
+       [title]="actionTitle[GCA.DOWN]"
+       (click)="action(GCA.DOWN)"
+       (mousedown)="holdAction(GCA.DOWN, true)"
+       (mouseup)="holdAction(GCA.DOWN, false)"
+       (mouseleave)="holdAction(GCA.DOWN, false)">
+    </i>
+  </div>
+  <div id="left-control">
+    <i class="fa fa-chevron-left control"
+       [title]="actionTitle[GCA.LEFT]"
+       (click)="action(GCA.LEFT)"
+       (mousedown)="holdAction(GCA.LEFT, true)"
+       (mouseup)="holdAction(GCA.LEFT, false)"
+       (mouseleave)="holdAction(GCA.LEFT, false)">
+    </i>
+  </div>
+  <div id="right-control">
+    <i class="fa fa-chevron-right control"
+       [title]="actionTitle[GCA.RIGHT]"
+       (click)="action(GCA.RIGHT)"
+       (mousedown)="holdAction(GCA.RIGHT, true)"
+       (mouseup)="holdAction(GCA.RIGHT, false)"
+       (mouseleave)="holdAction(GCA.RIGHT, false)">
+    </i>
+  </div>
+</div>
+
+<div class="controls text-center">
+  <i class="fa control float-left"
+     [title]="isGameStarted() ? actionTitle[GCA.STOP_GAME] : actionTitle[GCA.START_GAME]"
+     (click)="action(isGameStarted() ? GCA.STOP_GAME : GCA.START_GAME)"
+     [ngClass]="{'fa-play': !isGameStarted(), 'fa-pause': isGameStarted()}"></i>
+  <i class="fa fa-step-forward control float-left"
+     [title]="actionTitle[GCA.STEP]"
+     (click)="action(GCA.STEP)"></i>
+  <i class="fa control float-right"
+     [title]="isFullScreen() ? actionTitle[GCA.RESTORE_SCREEN] : actionTitle[GCA.FULL_SCREEN]"
+     (click)="action(isFullScreen() ? GCA.RESTORE_SCREEN : GCA.FULL_SCREEN)"
+     [ngClass]="{'fa-window-maximize': !isFullScreen(), 'fa-window-restore': isFullScreen()}"></i>
+  <i class="fa fa-search-minus control float-right"
+     [title]="actionTitle[GCA.ZOOM_OUT]"
+     (click)="action(GCA.ZOOM_OUT)"></i>
+  <i class="fa fa-search-plus control float-right"
+     [title]="actionTitle[GCA.ZOOM_IN]"
+     (click)="action(GCA.ZOOM_IN)"></i>
+  <div class="float-left" ngbDropdown placement="top-left">
+    <span ngbDropdownToggle class="control">
+      <i
+        class="fa fa-clock-o"
+        aria-hidden="true"
+        [title]="'Speed (' + actionTitle[getCurrentSpeed()] + ')'">
+      </i>
+    </span>
+    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left">
+      <a class="dropdown-item clickable" (click)=action(GCA.SPEED_VERY_SLOW)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getCurrentSpeed() !== GCA.SPEED_VERY_SLOW, 'fa-check-circle-o': getCurrentSpeed() === GCA.SPEED_VERY_SLOW}">
+        </i>
+        {{ actionTitle[GCA.SPEED_VERY_SLOW] }}
+      </a>
+      <a class="dropdown-item clickable" (click)=action(GCA.SPEED_SLOW)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getCurrentSpeed() !== GCA.SPEED_SLOW, 'fa-check-circle-o': getCurrentSpeed() === GCA.SPEED_SLOW}">
+        </i>
+        {{ actionTitle[GCA.SPEED_SLOW] }}
+      </a>
+      <a class="dropdown-item clickable" (click)=action(GCA.SPEED_NORMAL)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getCurrentSpeed() !== GCA.SPEED_NORMAL, 'fa-check-circle-o': getCurrentSpeed() === GCA.SPEED_NORMAL}">
+        </i>
+        {{ actionTitle[GCA.SPEED_NORMAL] }}
+      </a>
+      <a class="dropdown-item clickable" (click)=action(GCA.SPEED_FAST)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getCurrentSpeed() !== GCA.SPEED_FAST, 'fa-check-circle-o': getCurrentSpeed() === GCA.SPEED_FAST}">
+        </i> {{ actionTitle[GCA.SPEED_FAST] }}
+      </a>
+      <a class="dropdown-item clickable" (click)=action(GCA.SPEED_VERY_FAST)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getCurrentSpeed() !== GCA.SPEED_VERY_FAST, 'fa-check-circle-o': getCurrentSpeed() === GCA.SPEED_VERY_FAST}">
+        </i>
+        {{ actionTitle[GCA.SPEED_VERY_FAST] }}
+      </a>
+    </div>
+  </div>
+  <span class="d-none d-md-inline">
+    {{ getRule().getName() != null ? getRule().getName() + ' - ' : '' }}
+    {{ getRule().getFormattedRuleString() }}
+  </span>
+  <div ngbDropdown placement="top-left" class="float-left">
+    <span ngbDropdownToggle class="control">
+      <i class="fa fa-gavel"
+         aria-hidden="true"
+         title="Rule">
+      </i>
+    </span>
+    <div ngbDropdownMenu class="dropdown-menu">
+      <a class="dropdown-item clickable" *ngFor="let r of rules()" (click)=setRule(r.rule)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getRule().getFormattedRuleString() !== r.rule, 'fa-check-circle-o': getRule().getFormattedRuleString() === r.rule}">
+        </i>
+        {{ r.name }} - {{ r.rule }}
+      </a>
+    </div>
+  </div>
+  <div ngbDropdown placement="top-left" class="float-left">
+    <span ngbDropdownToggle class="control">
+      <i class="fa fa-paint-brush"
+         aria-hidden="true"
+         title="Theme">
+      </i>
+    </span>
+    <div ngbDropdownMenu class="dropdown-menu">
+      <a class="dropdown-item clickable" *ngFor="let theme of themes() | sort:'name';" (click)=setTheme(theme)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': getTheme() !== theme, 'fa-check-circle-o': getTheme() === theme}">
+        </i>
+        {{ theme.name }}
+      </a>
+    </div>
+  </div>
+  <i class="fa fa-eraser control float-left"
+     [title]="actionTitle[GCA.ERASE]"
+     (click)="action(GCA.ERASE)"></i>
+  <i *ngIf="isRefreshable()" class="fa fa-refresh control float-left"
+     [title]="actionTitle[GCA.RESET]"
+     (click)="action(GCA.RESET)"></i>
+</div>

@@ -1,0 +1,61 @@
+<div id="templatesTop" class="row">
+  <div class="col-12">
+    <app-search (query)="queryChanged($event)"
+                [loading]="!(filteredTemplates$ | async) || (updatingPage$ | async)"></app-search>
+  </div>
+</div>
+
+<ng-container *ngIf="filteredTemplates$ | async as filteredTemplates">
+  <div class="row">
+    <div class="col-12">
+      <hr class="mb-0">
+      <app-view-mode-button class="top-buffer pull-left mr-2 d-none d-sm-block"></app-view-mode-button>
+      <app-theme-button class="top-buffer pull-left mr-2"></app-theme-button>
+      <span class="text-monospace pull-right">
+        <ng-container *ngIf="filteredTemplates.length">{{ filteredTemplates.length }} </ng-container>
+        <ng-container *ngIf="!filteredTemplates.length">No </ng-container>
+        <ng-container *ngIf="filteredTemplates.length !== 1">results</ng-container>
+        <ng-container *ngIf="filteredTemplates.length === 1">result</ng-container>
+      </span>
+    </div>
+  </div>
+  <ng-container *ngIf="!(updatingPage$ | async)">
+    <div class="row" [ngClass]="{'full-width': wideViewMode}">
+      <div class="top-buffer bottom-buffer"
+           [ngClass]="{'col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12': wideViewMode, 'col-lg-6 col-md-12': !wideViewMode}"
+           *ngFor="let template of filteredTemplates | paginate: { itemsPerPage: 12, currentPage: page }">
+        <app-template [template]="template" [theme]="theme"></app-template>
+      </div>
+      <div class="col-12 top-buffer bottom-buffer">
+        <pagination-template #p="paginationApi"
+                             (pageChange)="page = $event">
+          <nav aria-label="Page navigation">
+            <ul class="pagination pagination justify-content-center">
+              <li class="page-item" [ngClass]="{'disabled': p.isFirstPage()}">
+                <a class="page-link clickable" (click)="p.previous(); toTemplatesTop()" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li *ngFor="let pagination of p.pages"
+                  class="page-item"
+                  [ngClass]="{'active': p.getCurrent() === pagination.value, 'disabled': pagination.label === '...'}">
+                <a class="page-link clickable"
+                   (click)="p.setCurrent(pagination.value); toTemplatesTop()">
+                  {{ pagination.label }}
+                </a>
+              </li>
+              <li class="page-item" [ngClass]="{'disabled': p.isLastPage()}">
+                <a class="page-link clickable" (click)="p.next(); toTemplatesTop()" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </pagination-template>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+

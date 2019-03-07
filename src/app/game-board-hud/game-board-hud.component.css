@@ -1,0 +1,78 @@
+.controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.control {
+  color: rgb(255, 255, 255);
+  padding: .4rem;
+}
+
+.control:hover {
+  color: #337ab7;
+  cursor: pointer;
+}
+
+#pan-controls {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#up-control {
+  width:20px;
+  height:20px;
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#down-control {
+  width:20px;
+  height:20px;
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#left-control {
+  width:20px;
+  height:20px;
+  position:absolute;
+  top: 0;
+  left: 2px;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#right-control {
+  width:20px;
+  height:20px;
+  position:absolute;
+  top: 0;
+  right: 2px;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

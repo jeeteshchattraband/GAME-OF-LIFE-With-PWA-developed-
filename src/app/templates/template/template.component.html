@@ -1,0 +1,25 @@
+<div class="card text-center" *ngIf="getTemplate() != null && templateWrapper">
+  <div class="template-card card-body p-0 m-0" *ngIf="!isShowDetails()">
+    <app-game-board [template]="getTemplatePromise()" [preview]="preview" class="w-100 h-100"></app-game-board>
+    <div class="controls text-center">
+      <span class="fa fa-fw fa-pencil-square-o control pull-left"
+            [routerLink]="['/game-board', 'template', getTemplate().getFileName()]"></span>
+      <span class="control" (click)="toggleDetails()">
+        <span>{{ getTemplate().getName() }}</span>
+        <span class="fa fa-fw fa-info-circle"></span>
+      </span>
+    </div>
+  </div>
+  <div class="card-body template-card p-0 m-0" *ngIf="isShowDetails()" style="overflow-y: auto;">
+    <app-template-detail [template]="getTemplate()"></app-template-detail>
+    <div class="controls text-center">
+      <span class="control" (click)="toggleDetails()">
+        <span class="fa fa-fw fa-arrow-left"></span>
+        <span>Back</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<app-game-board *ngIf="getTemplate() != null && !templateWrapper" [template]="getTemplatePromise()" [preview]="preview"
+                class="w-100 h-100"></app-game-board>

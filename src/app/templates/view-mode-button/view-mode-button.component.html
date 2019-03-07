@@ -1,0 +1,12 @@
+<div ngbDropdown class="d-inline-block" [formGroup]="formGroup">
+  <button class="btn btn-sm btn-outline-secondary" id="viewMode" ngbDropdownToggle>View Mode: {{ getActive() }}</button>
+  <div ngbDropdownMenu aria-labelledby="viewMode">
+    <div ngbDropdownMenu class="dropdown-menu">
+      <a class="dropdown-item clickable" *ngFor="let viewMode of viewModes" (click)=setMode(viewMode.key)>
+        <i class="fa"
+           [ngClass]="{'fa-circle-o': viewMode.key !== formGroup.get('mode').value, 'fa-check-circle-o': viewMode.key === formGroup.get('mode').value}"></i>
+        {{ viewMode.name }}
+      </a>
+    </div>
+  </div>
+</div>

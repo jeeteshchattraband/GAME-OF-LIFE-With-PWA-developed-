@@ -1,0 +1,30 @@
+.wrapper-input:focus-within {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25)
+}
+
+.search-box-input:focus {
+  outline: transparent !important;
+  box-shadow: none;
+}
+
+.active-tag-container {
+  margin-right: .1rem;
+  margin-left: .1rem;
+}
+
+.search-icon {
+  float: right;
+  margin-right: 8px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  color: #000000;
+}
+
+.input-group:focus-within + .search-icon {
+  color: #80bdff;
+}

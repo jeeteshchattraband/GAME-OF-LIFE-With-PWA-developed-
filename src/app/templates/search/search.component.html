@@ -1,0 +1,36 @@
+<div [formGroup]="form">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-info"
+              type="button"
+              (click)="showTypeahaead()"><span class="fa fa-2x fa-terminal"></span></button>
+    </div>
+    <div class="d-inline-flex m-0 p-0 wrapper-input form-control form-control-lg" #searchBox style="overflow-y: hidden">
+      <div *ngFor="let tag of getActiveTags()" class="active-tag-container col-10 col-sm-7 col-md-6 p-0">
+        <app-input-badge
+          [tag]="tag"
+          (complete)="tagComplete()"
+          (remove)="removeTag($event)"></app-input-badge>
+      </div>
+      <input formControlName="query"
+             class="flex-grow-1 search-box-input form-control form-control-lg border-0"
+             autocomplete="false"
+             [ngbTypeahead]="autoComplete"
+             [focusFirst]="false"
+             container="body"
+             #typeahead="ngbTypeahead"
+             #searchInput
+      />
+    </div>
+  </div>
+  <span class="fa fa-2x search-icon" [ngClass]="loading ? 'fa-spinner fa-pulse' : 'fa-search'"></span>
+  <div class="d-flex flex-row justify-content-start flex-wrap row">
+    <div *ngFor="let tag of geInactiveTags()" class="inactive-tag-container mt-2 col-12 col-sm-6">
+      <app-input-badge
+        [tag]="tag"
+        (complete)="tagComplete()"
+        (remove)="removeTag($event)"></app-input-badge>
+    </div>
+  </div>
+</div>
+

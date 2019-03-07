@@ -1,0 +1,20 @@
+export enum GameControlAction {
+  START_GAME,
+  STOP_GAME,
+  STEP,
+  ERASE,
+  RESET,
+  ZOOM_IN,
+  ZOOM_OUT,
+  FULL_SCREEN,
+  RESTORE_SCREEN,
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT,
+  SPEED_VERY_FAST,
+  SPEED_FAST,
+  SPEED_NORMAL,
+  SPEED_SLOW,
+  SPEED_VERY_SLOW
+}

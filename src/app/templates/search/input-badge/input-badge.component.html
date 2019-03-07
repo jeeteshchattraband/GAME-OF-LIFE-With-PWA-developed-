@@ -1,0 +1,35 @@
+<div class="badge badge-primary w-100" [formGroup]="tag">
+  <div class="form-group form-row mb-0">
+    <label class="col-lg-2 col-4 mb-0 my-auto">{{tag.get('key').value}}</label>
+    <input *ngIf="[tagType.TYPE_AHEAD, tagType.TEXT].includes(tag.get('type').value)"
+           formControlName="value"
+           type="text"
+           class="form-control form-control-sm col-lg-9 col-md-7 col-6"
+           autocomplete="false"
+           [ngbTypeahead]="autoComplete"
+           container="body"
+           #typeahead="ngbTypeahead"
+           (keypress)="keyPressed($event)"
+           #tagInput>
+    <select *ngIf="tagType.DROP_DOWN === tag.get('type').value"
+           formControlName="value"
+           class="form-control form-control-sm custom-select custom-select-sm col-lg-9 col-md-7 col-6"
+           (keypress)="keyPressed($event)"
+           #tagInput>
+      <option [ngValue]="''">
+        Select {{tag.get('key').value}}
+      </option>
+      <option *ngFor="let item of dropdownItems() | async" [ngValue]="item.value">
+        {{ item.display }}
+      </option>
+    </select>
+    <div class="col-lg-1 col-md-1 col-2">
+      <button type="button"
+              class="d-inline-flex align-items-center justify-content-center h-100 w-100 close"
+              aria-label="Close"
+              (click)="removeTag()">
+        <span class="fa fa-times"></span>
+      </button>
+    </div>
+  </div>
+</div>

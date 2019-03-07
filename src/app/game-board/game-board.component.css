@@ -1,0 +1,21 @@
+div.divTable {
+  display: table;
+  border-collapse: collapse;
+}
+
+div.divTableRow {
+  display: table-row;
+  height: 1em;
+}
+
+div.divTableCell {
+  border: 1px solid darkgrey;
+  display: table-cell;
+  width: 1em;
+  height: 1em;
+  background-color: black;
+}
+
+div.divTableCell.alive {
+  background-color: forestgreen;
+}
