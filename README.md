@@ -2,6 +2,9 @@
 
 The purpose of this project is to allow users to explore the phenomenon of cellular automaton within the bounds of the game of life. The user can experiment with their own creations, view over 1000 previously created templates, and apply different themes to create beautiful life forms.
 
+Created By Jeetesh Chattraband
+
+
 ## Website
 
 [https://gameoflife.xyz](https://gameoflife.xyz)
